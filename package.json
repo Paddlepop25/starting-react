@@ -2,7 +2,7 @@
 	"name": "starting-react",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "https://paddlepop25.github.io/starting-react",
+	"homepage": "https://Paddlepop25.github.io/starting-react",
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.11.9",
 		"@testing-library/react": "^11.2.5",
