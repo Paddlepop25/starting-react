@@ -1,0 +1,5 @@
+App-funcComp.js is written with functional components. 
+( Before this #10 useContext video 
+https://www.youtube.com/watch?v=1kFX3B2IyH0&list=PLNqp92_EXZBKa1U7JbgUwBnDk3XzYDvXe&index=10 )
+
+App-classComp.js is written with class components
