@@ -1,12 +1,12 @@
 import React from "react";
 import PokemonRow from "./PokemonRow";
-import { useSelector, useDispatch } from "react-redux";
+import useStore from "../store";
 // import PokemonContext from "../PokemonContext";
 
 const PokemonTable = () => {
-	const dispatch = useDispatch();
-	const pokemon = useSelector((state) => state.pokemon);
-	const filter = useSelector((state) => state.filter);
+	const pokemon = useStore((state) => state.pokemon);
+	const filter = useStore((state) => state.filter);
+	const setSelectedPokemon = useStore((state) => state.setSelectedPokemon);
 
 	// const {
 	// 	state: { pokemon, filter },
@@ -25,12 +25,7 @@ const PokemonTable = () => {
 						<PokemonRow
 							key={poki.name + index}
 							poki={poki}
-							onSelect={(poki) =>
-								dispatch({
-									type: "SET_SELECTED_POKEMON",
-									payload: poki,
-								})
-							}
+							onSelect={(poki) => setSelectedPokemon(poki)}
 						/>
 					))}
 			</tbody>
