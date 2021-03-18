@@ -3,3 +3,10 @@ App-funcComp.js is written with functional components.
 https://www.youtube.com/watch?v=1kFX3B2IyH0&list=PLNqp92_EXZBKa1U7JbgUwBnDk3XzYDvXe&index=10 )
 
 App-classComp.js is written with class components
+
+App-useContext-useReducer.js is for state management with these 2 hooks. 
+They sorta mimic redux.
+Using these can get rid of React.useState
+
+App-zustand is a state management library, like MobX.
+see video #13. I skipped MobX

@@ -16,7 +16,6 @@ const PokemonInfo = () => {
 			</h2>
 			<table>
 				<tbody>
-					{console.log(selectedPokemon)}
 					{Object.keys(selectedPokemon.base).map((key) => (
 						<tr key={key}>
 							<td>{key}:</td>
@@ -26,9 +25,7 @@ const PokemonInfo = () => {
 				</tbody>
 			</table>
 		</div>
-	) : (
-		<code>Pokemon not found</code>
-	);
+	) : null;
 };
 
 export default PokemonInfo;
