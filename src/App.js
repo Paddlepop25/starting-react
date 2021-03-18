@@ -70,7 +70,7 @@ function App() {
   }, []);
 
   if (!state.pokemon) {
-    return <div>Loading data</div>;
+    return <div>Loading data...</div>;
   }
 
   return (

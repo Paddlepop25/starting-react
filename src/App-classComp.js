@@ -120,8 +120,8 @@ class App extends React.Component {
                 {this.state.pokemon
                   .filter(pokemon => pokemon.name.english.toLowerCase().includes(this.state.filter))
                   .slice(0, 15)
-                  .map((poki, index) => (
-                    <PokemonRow poki={poki} key={poki.id + index} onSelect={poki => this.setState({
+                  .map((poki) => (
+                    <PokemonRow poki={poki} key={poki.id} onSelect={poki => this.setState({
                       ...this.state,
                       selectedItem: poki
                     })}>

@@ -7,12 +7,15 @@ const PokemonInfo = () => {
 	} = React.useContext(PokemonContext);
 	return selectedPokemon ? (
 		<div>
-			<h2>{selectedPokemon.name.english}</h2>
+			<h2>
+				{selectedPokemon.name.english}&nbsp;({selectedPokemon.name.japanese})
+			</h2>
 			<table>
 				<tbody>
+					{console.log(selectedPokemon)}
 					{Object.keys(selectedPokemon.base).map((key) => (
 						<tr key={key}>
-							<td>{key}</td>
+							<td>{key}:</td>
 							<td>{selectedPokemon.base[key]}</td>
 						</tr>
 					))}
