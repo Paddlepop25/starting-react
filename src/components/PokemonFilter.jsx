@@ -9,13 +9,21 @@ const Input = styled.input`
 `;
 
 const PokemonFilter = () => {
-	const { filter, setFilter } = React.useContext(PokemonContext);
-	
+	const {
+		state: { filter },
+		dispatch,
+	} = React.useContext(PokemonContext);
+
 	return (
 		<Input
 			type='text'
 			value={filter}
-			onChange={(event) => setFilter(event.target.value.toLowerCase())}
+			onChange={(event) =>
+				dispatch({
+					type: "SET_FILTER",
+					payload: event.target.value.toLowerCase(),
+				})
+			}
 		/>
 	);
 };
