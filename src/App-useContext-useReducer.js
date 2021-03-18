@@ -6,16 +6,13 @@ import './App.css';
 import PokemonInfo from './components/PokemonInfo';
 import PokemonFilter from './components/PokemonFilter';
 import PokemonTable from './components/PokemonTable';
+import PokemonContext from './PokemonContext';
 
-import { createStore } from 'redux';
-import { Provider, useSelector, useDispatch } from 'react-redux';
-
-// state = initialState
-const pokemonReducer = (state = {
-  pokemon: [],
-  filter: '',
-  selectedPokemon: null
-}, action) => {
+/* 
+state is what is in the store, in this case look at React.useState
+and we've got filter, pokemon, selectedPokemon
+*/
+const pokemonReducer = (state, action) => {
   switch (action.type) {
     case 'SET_FILTER':
       return {
@@ -33,11 +30,11 @@ const pokemonReducer = (state = {
         selectedPokemon: action.payload
       };
     default:
-      return state;
+      throw new Error('No Action');
+    // in useReducer you throw an expection if you don't know what the action is
+    // in Redux you return the original state
   }
 };
-
-const store = createStore(pokemonReducer);
 
 const Title = styled.h1`
 	text-align: center;
@@ -56,8 +53,12 @@ const Container = styled.div`
 `;
 
 function App() {
-  const dispatch = useDispatch();
-  const pokemon = useSelector(state => state.pokemon);
+  // pokemonReducer and initial state, follow the ones in .useState() - see App-funcComp.js
+  const [state, dispatch] = React.useReducer(pokemonReducer, {
+    pokemon: [],
+    filter: '',
+    selectedPokemon: null
+  });
 
   React.useEffect(() => {
     fetch('http://localhost:3000/starting-react/pokemon.json')
@@ -68,22 +69,29 @@ function App() {
       }));
   }, []);
 
-  if (!pokemon) {
+  if (!state.pokemon) {
     return <div>Loading data...</div>;
   }
 
   return (
-    <Container>
-      <Title>Pokemon Search</Title>
-      <TwoColumnLayout>
-        <div>
-          <PokemonFilter />
-          <PokemonTable />
-        </div>
-        <PokemonInfo />
-      </TwoColumnLayout>
-    </Container>
+    <PokemonContext.Provider
+      value={{
+        state,
+        dispatch
+      }}
+    >
+      <Container>
+        <Title>Pokemon Search</Title>
+        <TwoColumnLayout>
+          <div>
+            <PokemonFilter />
+            <PokemonTable />
+          </div>
+          <PokemonInfo />
+        </TwoColumnLayout>
+      </Container>
+    </PokemonContext.Provider>
   );
 }
 
-export default () => <Provider store={store}><App /></Provider>;
+export default App;
